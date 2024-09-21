@@ -9,5 +9,5 @@ Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin)
 int main(int argc, char** argv)
 {
     CodeTask::Application app(argc, argv);
-    return app.run();
+    return app.Run();
 }

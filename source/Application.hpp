@@ -13,9 +13,10 @@ class Application
     Application(int argc, char** argv)
         : m_app(argc, argv)
     {
+        m_app.setStyleSheet("QMainWindow {background: #000000}");
     }
 
-    int run()
+    int Run()
     {
         return m_app.exec();  // NOLINT(readability-static-accessed-through-instance)
     }

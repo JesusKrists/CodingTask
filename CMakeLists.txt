@@ -13,18 +13,18 @@ include(cmake/project-is-top-level.cmake)
 include(cmake/variables.cmake)
 
 # ---- Declare library ----
-add_library(CodeTask_lib OBJECT source/Window.cpp source/ProgressBarWidget.cpp
-                                source/ClockWidget.cpp)
+add_library(
+  CodeTask_lib OBJECT source/Window.cpp source/FadingStackedWidget.cpp
+                      source/ProgressBarWidget.cpp source/ClockWidget.cpp)
 
 target_include_directories(
   CodeTask_lib ${warning_guard}
   PUBLIC "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/source>")
 target_compile_features(CodeTask_lib PUBLIC cxx_std_20)
 
-find_package(fmt REQUIRED)
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
-target_link_libraries(CodeTask_lib PUBLIC fmt::fmt)
-target_link_libraries(CodeTask_lib PUBLIC Qt6::Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Gui)
+target_link_libraries(CodeTask_lib PUBLIC Qt6::Core Qt6::Widgets Qt6::Gui)
+set_target_properties(CodeTask_lib PROPERTIES AUTOMOC ON)
 
 if(WIN32)
   target_link_libraries(CodeTask_lib PUBLIC Qt6::QWindowsIntegrationPlugin)

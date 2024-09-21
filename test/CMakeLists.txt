@@ -12,11 +12,7 @@ include(Catch)
 # ---- Tests ----
 
 qt_add_executable(CodeTask_test source/CodeTask_test.cpp)
-target_link_libraries(
-    CodeTask_test PRIVATE
-    CodeTask_lib
-    Catch2::Catch2WithMain
-)
+target_link_libraries(CodeTask_test PRIVATE CodeTask_lib Catch2::Catch2WithMain)
 target_compile_features(CodeTask_test PRIVATE cxx_std_20)
 
 catch_discover_tests(CodeTask_test)
