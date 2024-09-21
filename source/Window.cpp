@@ -14,7 +14,7 @@ static constexpr auto DEFAULT_WINDOW_HEIGHT = 768;
 
 static constexpr auto DEFAULT_PADDING = 32;
 
-static constexpr qreal LOADING_TIMER_LENGTH = 10000;
+static constexpr qreal LOADING_TIMER_LENGTH = 1000;
 static constexpr qreal LOADING_TIMER_INTERVAL = 100;
 
 Window::Window()
@@ -38,8 +38,7 @@ Window::Window()
                              m_loading_timer.stop();
                              QObject::connect(&m_progress_bar_widget,
                                               &ProgressBarWidget::LoadingFinished,
-                                              [this]() {  // m_stacked_widget.setCurrentIndex(1);
-                                              });
+                                              [this]() { m_stacked_widget.SwitchTo(1); });
                          }
 
                          m_progress_bar_widget.SetValue(progress_value);

@@ -6,16 +6,10 @@ if(BUILD_TESTING)
 endif()
 
 add_custom_target(
-    run-exe
-    COMMAND CodeTask_exe
-    VERBATIM
-)
+  run-exe
+  COMMAND CodeTask_exe
+  VERBATIM)
 add_dependencies(run-exe CodeTask_exe)
-
-option(BUILD_MCSS_DOCS "Build documentation using Doxygen and m.css" OFF)
-if(BUILD_MCSS_DOCS)
-  include(cmake/docs.cmake)
-endif()
 
 option(ENABLE_COVERAGE "Enable coverage support separate from CTest's" OFF)
 if(ENABLE_COVERAGE)
