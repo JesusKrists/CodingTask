@@ -116,7 +116,7 @@
     },
     {
       "name": "coverage-linux",
-      "binaryDir": "${sourceDir}/build/coverage",
+      "binaryDir": "${sourceDir}/build",
       "inherits": "ci-linux",
       "hidden": true,
       "cacheVariables": {
@@ -141,7 +141,7 @@
     },
     {
       "name": "ci-sanitize",
-      "binaryDir": "${sourceDir}/build/sanitize",
+      "binaryDir": "${sourceDir}/build",
       "inherits": [
         "ci-linux",
         "dev-mode",

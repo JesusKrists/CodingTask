@@ -1,12 +1,13 @@
-#include <iostream>
-#include <string>
+#include <QtPlugin>
 
-#include "lib.hpp"
+#ifdef PLATFORM_WINDOWS
+Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin)
+#endif
 
-auto main() -> int
+#include "Application.hpp"
+
+int main(int argc, char** argv)
 {
-  auto const lib = library {};
-  auto const message = "Hello from " + lib.name + "!";
-  std::cout << message << '\n';
-  return 0;
+    CodeTask::Application app(argc, argv);
+    return app.run();
 }

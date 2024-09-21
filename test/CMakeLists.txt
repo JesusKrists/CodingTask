@@ -11,7 +11,7 @@ include(Catch)
 
 # ---- Tests ----
 
-add_executable(CodeTask_test source/CodeTask_test.cpp)
+qt_add_executable(CodeTask_test source/CodeTask_test.cpp)
 target_link_libraries(
     CodeTask_test PRIVATE
     CodeTask_lib
