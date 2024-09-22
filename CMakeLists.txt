@@ -36,11 +36,8 @@ qt_add_executable(CodeTask_exe source/main.cpp)
 
 target_compile_features(CodeTask_exe PRIVATE cxx_std_20)
 target_link_libraries(CodeTask_exe PRIVATE CodeTask_lib)
-set_target_properties(
-  CodeTask_exe
-  PROPERTIES WIN32_EXECUTABLE ON
-             MACOSX_BUNDLE ON
-             OUTPUT_NAME CodeTask)
+set_target_properties(CodeTask_exe PROPERTIES WIN32_EXECUTABLE ON OUTPUT_NAME
+                                                                  CodeTask)
 
 # ---- Install rules ----
 
