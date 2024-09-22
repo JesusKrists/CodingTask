@@ -31,6 +31,11 @@ if(WIN32)
   target_compile_definitions(CodeTask_lib PUBLIC PLATFORM_WINDOWS)
 endif()
 
+if(UNIX AND NOT APPLE)
+  target_link_libraries(CodeTask_lib PUBLIC Qt6::QXcbIntegrationPlugin)
+  target_compile_definitions(CodeTask_lib PUBLIC PLATFORM_LINUX)
+endif()
+
 # ---- Declare executable ----
 qt_add_executable(CodeTask_exe source/main.cpp)
 
