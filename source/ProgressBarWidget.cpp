@@ -43,7 +43,7 @@ ProgressBarWidget::ProgressBarWidget(QWidget* parent)
                      &QPropertyAnimation::finished,
                      [this]()
                      {
-                         if (m_internal_value != m_value) {
+                         if (!qFuzzyCompare(m_internal_value, m_value)) {
                              m_progress_bar_animation.setStartValue(m_internal_value);
                              m_progress_bar_animation.setEndValue(m_value);
                              m_progress_bar_animation.start();
