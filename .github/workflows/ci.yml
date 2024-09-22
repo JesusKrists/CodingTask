@@ -106,6 +106,9 @@ jobs:
     - name: Install dependencies
       run: bash < .github/scripts/conan-ci-setup.sh
 
+    - name: Explicitly save cache
+      run: conan cache save '*/*:*' --file=conan_cache_save.tgz
+
     - name: Configure
       run: cmake --preset=ci-sanitize
 
@@ -163,6 +166,9 @@ jobs:
     - name: Install dependencies
       shell: bash
       run: bash < .github/scripts/conan-ci-setup.sh
+
+    - name: Explicitly save cache
+      run: conan cache save '*/*:*' --file=conan_cache_save.tgz
 
     - name: Setup MultiToolTask
       if: matrix.os == 'windows-2022'
