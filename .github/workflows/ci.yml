@@ -100,6 +100,9 @@ jobs:
         path: conan_cache_save.tgz
         key: conan-sanitize-${{ hashFiles('conan*.[pl][yo]*') }}
 
+    - name: Install system dependencies
+      run: sudo apt-get install -y -q libgl-dev
+
     - name: Install dependencies
       run: bash < .github/scripts/conan-ci-setup.sh
 

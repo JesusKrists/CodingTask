@@ -7,6 +7,19 @@ This is the CodeTask project.
 ## Dependencies
 
 For a list of dependencies, please refer to [conanfile.py](conanfile.py).
+To install the dependencies, you need to use the conan package manager.
+It is available as a pip package. So you can just run this command
+
+```sh
+pip install -r requirements.txt
+```
+
+After this you can run
+
+```sh
+conan profile detect
+conan install . -b missing
+```
 
 ## Build
 
@@ -17,7 +30,7 @@ Here are the steps for building in release mode with a single-configuration
 generator, like the Unix Makefiles one:
 
 ```sh
-cmake -S . -B build -D CMAKE_BUILD_TYPE=Release
+cmake --preset=ci-ubuntu
 cmake --build build
 ```
 
@@ -25,7 +38,7 @@ Here are the steps for building in release mode with a multi-configuration
 generator, like the Visual Studio ones:
 
 ```sh
-cmake -S . -B build
+cmake --preset=ci-windows
 cmake --build build --config Release
 ```
 
