@@ -101,7 +101,7 @@ jobs:
         key: conan-sanitize-${{ hashFiles('conan*.[pl][yo]*') }}
 
     - name: Install system dependencies
-      run: sudo apt-get install -y -q libgl-dev libx11-dev libx11-xcb-dev libfontenc-dev libice-dev libsm-dev libxau-dev libxaw7-dev
+      run: sudo apt-get install -y -q build-essential xorg-dev libgl-dev libx11-dev libx11-xcb-dev libfontenc-dev libice-dev libsm-dev libxau-dev libxaw7-dev
 
     - name: Install dependencies
       run: bash < .github/scripts/conan-ci-setup.sh
