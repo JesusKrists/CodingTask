@@ -141,7 +141,7 @@
     },
     {
       "name": "ci-sanitize",
-      "binaryDir": "${sourceDir}/build",
+      "binaryDir": "${sourceDir}/build/sanitize",
       "inherits": [
         "ci-linux",
         "dev-mode",
