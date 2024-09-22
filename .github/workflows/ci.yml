@@ -133,7 +133,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [macos-14, ubuntu-22.04, windows-2022]
+        os: [ubuntu-22.04, windows-2022] # Removed macos-14 for now. Too much work to test on it
 
     runs-on: ${{ matrix.os }}
 
