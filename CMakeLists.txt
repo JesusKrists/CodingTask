@@ -23,8 +23,6 @@ target_include_directories(
 target_compile_features(CodeTask_lib PUBLIC cxx_std_20)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets Gui)
-target_link_libraries(CodeTask_lib PUBLIC Qt6::Core Qt6::Widgets Qt6::Gui)
-set_target_properties(CodeTask_lib PROPERTIES AUTOMOC ON)
 
 if(WIN32)
   target_link_libraries(CodeTask_lib PUBLIC Qt6::QWindowsIntegrationPlugin)
@@ -35,6 +33,9 @@ if(UNIX AND NOT APPLE)
   target_link_libraries(CodeTask_lib PUBLIC Qt6::QXcbIntegrationPlugin)
   target_compile_definitions(CodeTask_lib PUBLIC PLATFORM_LINUX)
 endif()
+
+target_link_libraries(CodeTask_lib PUBLIC Qt6::Core Qt6::Widgets Qt6::Gui)
+set_target_properties(CodeTask_lib PROPERTIES AUTOMOC ON)
 
 # ---- Declare executable ----
 qt_add_executable(CodeTask_exe source/main.cpp)

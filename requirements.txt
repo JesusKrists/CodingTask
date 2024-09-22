@@ -1,2 +1,2 @@
-blackformat
+black
 conan>2
