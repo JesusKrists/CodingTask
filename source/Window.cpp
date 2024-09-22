@@ -14,7 +14,7 @@ static constexpr auto DEFAULT_WINDOW_HEIGHT = 768;
 
 static constexpr auto DEFAULT_PADDING = 32;
 
-static constexpr qreal LOADING_TIMER_LENGTH = 1000;
+static constexpr qreal LOADING_TIMER_LENGTH = 10000;
 static constexpr qreal LOADING_TIMER_INTERVAL = 100;
 
 Window::Window()

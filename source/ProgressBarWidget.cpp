@@ -75,7 +75,7 @@ void ProgressBarWidget::paintEvent(QPaintEvent* event)
     // Calculate useful metrics
     qreal current_progress_degrees = InternalValue() * FULL_CIRCLE_DEGREES;
     qreal current_value_percent = qRound(InternalValue() * TO_PERCENT);
-    QString current_value_text = QString::number(current_value_percent);
+    auto current_value_text = QString::number(current_value_percent);
 
     auto smallest_size = SmallestSize();
     auto progress_bar_width = qRound(smallest_size * PROGRESS_BAR_WIDTH_COEFICIENT);
@@ -87,17 +87,22 @@ void ProgressBarWidget::paintEvent(QPaintEvent* event)
     auto percent_text_font = painter.font();
     percent_text_font.setPixelSize(qRound(smallest_size * PROGRESS_BAR_WIDTH_COEFICIENT));
     percent_text_font.setBold(true);
+    auto pc_text_fm = QFontMetrics(percent_text_font);
 
     auto percent_sign_font = painter.font();
     percent_sign_font.setPixelSize(qRound(smallest_size * (PROGRESS_BAR_WIDTH_COEFICIENT * ONE_HALF)));
+    auto pc_sign_fm = QFontMetrics(percent_sign_font);
 
     auto init_text_font = painter.font();
     init_text_font.setPixelSize(qRound(smallest_size * (PROGRESS_BAR_WIDTH_COEFICIENT * ONE_THIRD)));
+    auto init_text_fm = QFontMetrics(init_text_font);
 
-    auto percent_text_size = QFontMetrics(percent_text_font).size(Qt::TextSingleLine, current_value_text);
-    auto percent_sign_size = QFontMetrics(percent_sign_font).size(Qt::TextSingleLine, "%");
-    auto first_line_size = QSize(percent_text_size.width() + percent_sign_size.width(), percent_text_size.height());
-    auto second_line_size = QFontMetrics(init_text_font).size(Qt::TextSingleLine, INIT_TEXT);
+    auto percent_text_size = pc_text_fm.size(Qt::TextSingleLine, current_value_text);
+    auto percent_sign_size = pc_sign_fm.size(Qt::TextSingleLine, "%");
+    auto first_line_size = QSize(percent_text_size.width() + percent_sign_size.width(), init_text_fm.xHeight());
+    auto second_line_size = init_text_fm.size(Qt::TextSingleLine, INIT_TEXT);
+    auto whole_text_size =
+        QSize(qMax(first_line_size.width(), second_line_size.width()), pc_text_fm.xHeight() + init_text_fm.xHeight());
 
     // Draw progress bar
     auto starting_x = qRound(progress_bar_bounding_box.left() + progress_bar_bounding_box.width() * ONE_HALF);
@@ -121,7 +126,8 @@ void ProgressBarWidget::paintEvent(QPaintEvent* event)
     auto text_center_y = progress_bar_bounding_box.top() + progress_bar_bounding_box.height() * ONE_HALF;
 
     auto percent_text_x = static_cast<int>(text_center_x - first_line_size.width() * ONE_HALF);
-    auto percent_text_y = static_cast<int>(text_center_y);
+    auto percent_text_y =
+        static_cast<int>(text_center_y - whole_text_size.height() * ONE_HALF + first_line_size.height());
 
     auto init_text_x = static_cast<int>(text_center_x - second_line_size.width() * ONE_HALF);
     auto init_text_y = percent_text_y + second_line_size.height();

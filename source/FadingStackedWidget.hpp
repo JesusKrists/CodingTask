@@ -17,7 +17,11 @@ class FadingStackedWidget : public QStackedWidget
 
     Q_SIGNAL void AnimationFinished();
 
+  protected:
+    void resizeEvent(QResizeEvent* event) override;
+
   private:
+    int m_new_index = 0;
     bool m_animating = false;
 };
 
